@@ -8,12 +8,24 @@ exports.seed = async function (knex) {
   knex('category').truncate()
 
     
-  await knex('products')
-    .insert([
-      { products: 'Eggs' },
-    ])
   await knex('category')
     .insert([
-      { category: 'Animal Products', product_id: 1}
+      { category: 'Animal Products'},
+      { category: 'Beans'},
+      { category: 'Cereals - Maize'},
+      { category: 'Cereals - Other'},
+      { category: 'Cereals - Rice'},
+      { category: 'Fruits'},
+      { category: 'Other'},
+      { category: 'Peas'},
+      { category: 'Roots & Tubers'},
+      { category: 'Seeds & Nuts'},
+      { category: 'Vegetables'},
+     
+    ])
+  await knex('products')
+    .insert([
+      { products: 'Eggs' , category_id: 1},
+      { products: 'Local Eggs' , category_id: 1},
     ])
 };
