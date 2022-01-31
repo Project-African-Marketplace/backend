@@ -18,14 +18,15 @@ exports.up = async (knex) => {
         .notNullable()
         .references('product_id')
         .inTable('products')
-        .onUpdate('RESTRICT')
-        .onDelete('RESTRICT');
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
     });
 };
+
 
 exports.down = async (knex) => {
   await knex.schema
     .dropTableIfExists('category')
     .dropTableIfExists('products')
-    .dropTableIfExists('users');
-};
+    .dropTableIfExists('users')
+}
