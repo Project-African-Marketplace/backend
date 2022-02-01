@@ -2,7 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const userRouter = require('./user/user-router')
-
+const User = require('./user/user-model')
 
 
 const server = express()
@@ -11,6 +11,10 @@ server.use(helmet())
 server.use(cors())
 server.use('/api/auth', userRouter)
 
+server.get('/',async (req,res,next)=> {
+  const response = await User.getAllUsers()
+  res.status(200).json(response)
+})
 
 server.use((err,req,res,next) => {
   res.status(500).json({
