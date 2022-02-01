@@ -13,6 +13,8 @@ exports.up = async (knex) => {
     .createTable('products', (products) => {
       products.increments('product_id');
       products.string('products', 255).notNullable();
+      products.string('description', 255);
+      products.integer('price', 255).notNullable();
       products.integer('category_id')
               .unsigned()
               .notNullable()
