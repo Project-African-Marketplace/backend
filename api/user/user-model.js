@@ -12,10 +12,14 @@ async function insertUser(user) {
 function getUserBy(filter){
     return db('users').where(filter).first()
 }
+function updateUser(id,changes){
+    return db('users').where('user_id',id).insert(changes)
+}
 
 
 module.exports = {
     getAllUsers,
     insertUser,
-    getUserBy
+    getUserBy, 
+    updateUser
 }

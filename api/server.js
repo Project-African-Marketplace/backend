@@ -9,7 +9,7 @@ const server = express()
 server.use(express.json())
 server.use(helmet())
 server.use(cors())
-server.use('/api', userRouter)
+server.use('/api/auth', userRouter)
 
 
 server.use((err,req,res,next) => {
