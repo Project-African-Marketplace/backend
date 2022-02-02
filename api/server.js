@@ -2,7 +2,8 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const userRouter = require('./user/user-router')
-const productRouter = require('./items/item-router')
+const productRouter = require('./Products/product-router')
+const categoryRouter = require('./Category/category-router')
 const User = require('./user/user-model')
 
 const server = express();
@@ -11,6 +12,7 @@ server.use(helmet());
 server.use(cors());
 server.use('/api/auth', userRouter);
 server.use('/api/products', productRouter);
+server.use('/api/category', categoryRouter);
 
 
 server.get('/', async (req, res, next) => {

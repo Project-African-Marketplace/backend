@@ -1,4 +1,9 @@
 const db = require('../data/db-config');
+
+function getCategory(){
+  return db('category')
+}
+
 //select
 // p.product_id, p.products,c.category
 // from products as p
@@ -38,5 +43,6 @@ async function addProduct(product){
 
 module.exports = {
   getProducts,
-  addProduct
+  addProduct,
+  getCategory
 };

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Items = require('./items-model');
-const { restricted, invalidCategory } = require('./items-middleware');
+const Items = require('./product-model');
+const { restricted, invalidCategory } = require('./product-middleware');
 
 router.get('/:id', restricted, invalidCategory, (req, res, next) => {
   const { id } = req.params;

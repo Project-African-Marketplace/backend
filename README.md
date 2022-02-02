@@ -56,6 +56,28 @@ Endpoint starting with /api/auth are related to login/signup process.
 
 **Output**: on success, returns an object in the following format.
 
+```
+[
+    {
+        "category_id": 1,
+        "category": "Animal Products"
+    },
+    {
+        "category_id": 2,
+        "category": "Beans"
+    },
+    {
+        "category_id": 3,
+        "category": "Cereals - Maize"
+    },
+    {
+        "category_id": 4,
+        "category": "Cereals - Other"
+    },
+    ....
+]
+```
+
 ## Products List
 
 Endpoint starting with `/api/products` are related to product information.
@@ -96,7 +118,7 @@ Endpoint starting with `/api/products` are related to product information.
 
 |    Key      |  Type  | Required | 
 |-------------|--------|----------|
-|  products   | string |   Yes    |
+| products    | string |   Yes    |
 | description | string |   No     | 
 | price       | integer|   Yes    |                                            
 | category    | string |   Yes    |
