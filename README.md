@@ -93,16 +93,25 @@ Endpoint starting with `/api/products` are related to product information.
     {
         "product_id": 15,
         "product": "Agwedde Beans",
+        "description": "fresh",
+        "price": 5,
+        "category_id": 2,
         "category": "Beans"
     },
     {
         "product_id": 16,
         "product": "Beans",
+        "description": "fresh",
+        "price": 5,
+        "category_id": 2,
         "category": "Beans"
     },
     {
         "product_id": 17,
         "product": "Beans (K132)",
+        "description": "fresh",
+        "price": 5,
+        "category_id": 2,
         "category": "Beans"
     },
     ...
