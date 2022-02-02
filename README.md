@@ -169,3 +169,20 @@ Endpoint starting with `/api/products` are related to product information.
 ]
 ```
 
+### Delete Product
+**Endpoint**: `[DELETE] /api/products/:id`
+
+**Output**: on success, returns an object in the following format.
+
+```
+[
+    {
+        "product_id": 2,
+        "product": "Exotic Eggs",
+        "description": "fresh",
+        "price": 5,
+        "category_id": 1
+    }
+]
+```
+
