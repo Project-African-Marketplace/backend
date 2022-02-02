@@ -21,7 +21,7 @@ server.get('/', async (req, res, next) => {
 });
 
 server.use((err, req, res, next) => {
-  res.status(500).json({
+  res.status(err.status || 500).json({
     message: err.message
   });
 });
