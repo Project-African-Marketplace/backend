@@ -10,7 +10,7 @@ The API is currently [live on Heroku](https://africanmarketplace-backend.herokua
 
 Endpoint starting with /api/auth are related to login/signup process.
 
-# Register
+### Register
 
 **Endpoint**: `[POST] /api/auth/register`
 
@@ -32,7 +32,7 @@ Endpoint starting with /api/auth are related to login/signup process.
 ```
 
 
-# Login
+### Login
 **Endpoint**: `[POST] /api/auth/login`
 
 **Input**: pass in an object containing the following login information.
@@ -50,7 +50,7 @@ Endpoint starting with /api/auth are related to login/signup process.
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6Ik1pa2UiLCJpYXQiOjE2NDM4MjE4MDksImV4cCI6MTY0Mzg1MDYwOX0.IS_TvQOS5JAlI8lM0Cmq23PYfmtfAIgPr6PiAWsfDRg"
 }
 ```
-# Get All Categories
+### Get All Categories
 
 **Endpoint**: `[GET] /api/category`
 
@@ -82,7 +82,7 @@ Endpoint starting with /api/auth are related to login/signup process.
 
 Endpoint starting with `/api/products` are related to product information.
 
-# Get All Products By Category ID
+### Get All Products By Category ID
 
 **Endpoint**: `[GET] /api/products/:id`
 
@@ -110,7 +110,7 @@ Endpoint starting with `/api/products` are related to product information.
 ```
 
 
-# Create New Product
+### Create New Product
 
 **Endpoint**: `[POST] /api/products`
 
