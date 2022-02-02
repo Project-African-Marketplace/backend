@@ -34,15 +34,5 @@ router.post('/login',checkCredentials,checkUsernameExists,async (req,res,next)=>
 
 })
 
-router.put('/:id',checkUsernameExists, async (req,res,next) => {
-    try{
-        const {id} = req.params
-        const response = await User.updateUser(id,req.body)
-        res.status(201).json(response)
-    }
-    catch(err){
-        next(err)
-    }
-})
 
 module.exports = router
