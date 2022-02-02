@@ -12,4 +12,16 @@ router.get('/:id', restricted, invalidCategory, (req, res, next) => {
     .catch(next);
 });
 
-module.exports = router;
+router.post('/', async (req,res,next)=> {
+    try{
+
+        const resp = await items.addProduct(req.body)
+        res.status(201).json(resp)
+    }
+    catch(err){
+        next(err)
+    }
+})
+
+module.exports = router
+

@@ -1,9 +1,9 @@
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const userRouter = require('./user/user-router');
-const productRouter = require('./items/item-router');
-const User = require('./user/user-model');
+const express = require('express')
+const helmet = require('helmet')
+const cors = require('cors')
+const userRouter = require('./user/user-router')
+const productRouter = require('./items/item-router')
+const User = require('./user/user-model')
 
 const server = express();
 server.use(express.json());
