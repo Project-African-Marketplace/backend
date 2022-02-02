@@ -15,7 +15,7 @@ server.use('/api/products', productRouter);
 server.use('/api/category', categoryRouter);
 
 
-server.get('/', async (req, res, next) => {
+server.get('/', async (req, res) => {
   const response = await User.getAllUsers();
   res.status(200).json(response);
 });

@@ -1,7 +1,7 @@
 const express = require("express")
 const User = require('./user-model')
 const {checkUsernameExists,validateUser,checkCredentials} = require('../user/user-middleware')
-const {tokenMaker,JWT_SECRET } = require('../secrets')
+const {tokenMaker } = require('../secrets')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 
