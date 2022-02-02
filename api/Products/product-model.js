@@ -1,7 +1,7 @@
 const db = require('../data/db-config');
 
-function getCategory(){
-  return db('category')
+function getCategory() {
+  return db('category');
 }
 
 //select
@@ -23,26 +23,39 @@ async function getProducts(id) {
 }
 
 
-async function addProduct(product){
-    
-    const {category_id} = await db('category as c')
+async function addProduct(product) {
+
+  const { category_id } = await db('category as c')
     .where('category', product.category)
-    .first()
-    
-    delete product.category;
-    const newProduct = {
-        ...product,
-        category_id: category_id,
-    } 
-    
-    const [response] = await db('products')
-    .insert(newProduct,['product_id','product','description','price','category_id'])
-    return response 
+    .first();
+
+  delete product.category;
+  const newProduct = {
+    ...product,
+    category_id: category_id,
+  };
+
+  const [response] = await db('products')
+    .insert(newProduct, ['product_id', 'product', 'description', 'price', 'category_id']);
+  return response;
+}
+
+function remove(id) {
+  return db('products')
+    .where('product_id', id)
+    .del();
+}
+
+function getProductById(id) {
+  return db('products')
+    .where('product_id', id);
 }
 
 
 module.exports = {
   getProducts,
   addProduct,
-  getCategory
+  getCategory,
+  remove,
+  getProductById
 };
