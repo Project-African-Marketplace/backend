@@ -10,7 +10,7 @@ exports.seed = async function (knex) {
 
   await knex('users')
     .insert([
-      {username:"winnie",password:"1234"}
+      {username:"winnie",password:"1234",role_name:'owner'}
     ])
 
   await knex('category')

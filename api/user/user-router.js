@@ -7,9 +7,9 @@ const router = express.Router()
 
 router.post('/register',checkCredentials,validateUser,async (req,res,next) => {
     try{
-        const {username,password} = req.body
+        const {username,password,role_name} = req.body
         const hash = bcrypt.hashSync(password,8)
-        const response = await User.insertUser({username,password:hash})
+        const response = await User.insertUser({username,password:hash,role_name})
         res.status(201).json(response)
     }
     catch(err){
@@ -34,15 +34,5 @@ router.post('/login',checkCredentials,checkUsernameExists,async (req,res,next)=>
 
 })
 
-router.put('/:id',checkUsernameExists, async (req,res,next) => {
-    try{
-        const {id} = req.params
-        const response = await User.updateUser(id,req.body)
-        res.status(201).json(response)
-    }
-    catch(err){
-        next(err)
-    }
-})
 
 module.exports = router

@@ -43,5 +43,17 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+router.put('/:product_id', async (req, res, next) => {
+  try {
+    const { product_id } = req.params;
+    const newProduct = await Items.insertProduct(product_id, req.body);
+    res.status(200).json(newProduct);
+  }
+  catch (err) {
+    next(err);
+  }
+});
+
+
 module.exports = router;
 
