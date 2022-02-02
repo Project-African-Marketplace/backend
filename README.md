@@ -92,17 +92,17 @@ Endpoint starting with `/api/products` are related to product information.
 [
     {
         "product_id": 15,
-        "products": "Agwedde Beans",
+        "product": "Agwedde Beans",
         "category": "Beans"
     },
     {
         "product_id": 16,
-        "products": "Beans",
+        "product": "Beans",
         "category": "Beans"
     },
     {
         "product_id": 17,
-        "products": "Beans (K132)",
+        "product": "Beans (K132)",
         "category": "Beans"
     },
     ...
@@ -118,7 +118,7 @@ Endpoint starting with `/api/products` are related to product information.
 
 |    Key      |  Type  | Required | 
 |-------------|--------|----------|
-| products    | string |   Yes    |
+| product    | string |   Yes    |
 | description | string |   No     | 
 | price       | integer|   Yes    |                                            
 | category    | string |   Yes    |
@@ -128,11 +128,35 @@ Endpoint starting with `/api/products` are related to product information.
 ```
 {
     "product_id": 119,
-    "products": "foo",
+    "product": "foo",
     "description": "bar",
     "price": 5,
     "category_id": 2
 }
 ```
 
+### Update Product
+**Endpoint**: `[PUT] /api/products/:product_id`
+
+**Input**: pass in an object containing the following login information.
+
+|    Key      |  Type  | Required | 
+|-------------|--------|----------|
+| product     | string |   No     |
+| description | string |   No     | 
+| price       | integer|   No     |    
+
+**Output**: on success, returns an object in the following format.
+
+```
+[
+    {
+        "product_id": 2,
+        "product": "Muffin",
+        "description": "Delicious",
+        "price": 1,
+        "category_id": 1
+    }
+]
+```
 
