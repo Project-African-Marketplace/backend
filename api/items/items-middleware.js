@@ -33,7 +33,7 @@ const invalidCategory = async (req, res, next) => {
   if (!category_id) {
     next({
       status: 400,
-      message: 'invalid category'
+      message: 'Invalid Category'
     });
   } else {
     next();

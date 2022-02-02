@@ -15,7 +15,7 @@ router.get('/:id', restricted, invalidCategory, (req, res, next) => {
 router.post('/', async (req,res,next)=> {
     try{
 
-        const resp = await items.addProduct(req.body)
+        const resp = await Items.addProduct(req.body)
         res.status(201).json(resp)
     }
     catch(err){
