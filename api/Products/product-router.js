@@ -12,28 +12,48 @@ router.get('/:id', restricted, invalidCategory, (req, res, next) => {
     .catch(next);
 });
 
-router.post('/', async (req,res,next)=> {
-    try{
+router.post('/', async (req, res, next) => {
+  try {
 
-        const resp = await Items.addProduct(req.body)
-        res.status(201).json(resp)
-    }
-    catch(err){
-        next(err)
-    }
-})
-
-router.put('/:product_id', async (req,res,next) => {
-  try{
-    const {product_id} = req.params
-    const newProduct = await Items.insertProduct(product_id,req.body)
-    res.status(200).json(newProduct)
+    const resp = await Items.addProduct(req.body);
+    res.status(201).json(resp);
   }
-  catch(err){
-    next(err)
+  catch (err) {
+    next(err);
   }
-})
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProduct = await Items.getProductById(id);
+    if (!deletedProduct) {
+      res.status(404).json({
+        message: 'the product does not exist'
+      });
+    } else {
+      res.json(deletedProduct);
+      await Items.remove(id);
+    }
+  }
+  catch {
+    res.status(500).json({
+      message: 'the product could not be deleted'
+    });
+  }
+});
+
+router.put('/:product_id', async (req, res, next) => {
+  try {
+    const { product_id } = req.params;
+    const newProduct = await Items.insertProduct(product_id, req.body);
+    res.status(200).json(newProduct);
+  }
+  catch (err) {
+    next(err);
+  }
+});
 
 
-module.exports = router
+module.exports = router;
 
