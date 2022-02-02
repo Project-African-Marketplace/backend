@@ -1,19 +1,116 @@
 ## African Marketplace (Backend)
 
-## ☝️ **Pitch**
+## Endpoint Documentation
 
-Sauti Africa empowers small business owners, particularly women, to improve their business and economic opportunities to grow out of poverty. 
+The current endpoints for this backend are described below
 
-You will build a platform to enable these business owners to create listing for items they have for sale. 
+The API is currently [live on Heroku](https://africanmarketplace-backend.herokuapp.com/)! 
 
-## ✅  **MVP**
+## API Documentation 
 
-1. A small business `owner` can login and see relevant prices in various categories to help them set their own prices.
+Endpoint starting with /api/auth are related to login/signup process.
 
-2. They can also make listing for `items` they want to sell, which will show up to all `users`.
+# Register
 
-3. They add a new `item` by selecting their market `location` and typing in their item's `name`, `description`, and `price`.
+**Endpoint**: `[POST] /api/auth/register`
 
-## 🏃‍♀️ **Stretch**
+**Input**: pass in an object containing the following registration information.
 
-1. A business `owner` can upload their `picture` to their profile.
+|   Key    | Type | Required |     Notes      |
+|----------|------|----------|----------------|
+| username |string|   Yes    | must be unique |
+| password |string|   Yes    |                |
+
+**Output**: on success, returns an object in the following format.
+
+```
+{
+    "user_id": 3,
+    "username": "Mike",
+    "password": "$2a$08$c9uiTQBxRqQ7.FCLqdSzMutUgOKf52y5dJTAU/4dWtsUVZ1ETF32K"
+}
+```
+
+
+# Login
+**Endpoint**: `[POST] /api/auth/login`
+
+**Input**: pass in an object containing the following login information.
+
+|   Key    | Type | Required |                Notes                       |
+|----------|------|----------|--------------------------------------------|
+| username |string|   Yes    | user must exist in the database            |
+| password |string|   Yes    | password must be valid for the target user |
+
+**Output**: on success, returns an object in the following format.
+
+```
+{
+    "message": "Mike is back",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6Ik1pa2UiLCJpYXQiOjE2NDM4MTk4NjQsImV4cCI6MTY0Mzg0ODY2NH0.roUZv9F4EcsQU3w_eM791Gl_1UWIBfcJZBT_-n8eZQc"
+}
+```
+# Get All Categories
+
+**Endpoint**: `[GET] /api/category`
+
+**Output**: on success, returns an object in the following format.
+
+## Products List
+
+Endpoint starting with `/api/products` are related to product information.
+
+# Get All Products By Category ID
+
+**Endpoint**: `[GET] /api/products/:id`
+
+**Output**: on success, returns an object in the following format.
+
+```
+[
+    {
+        "product_id": 15,
+        "products": "Agwedde Beans",
+        "category": "Beans"
+    },
+    {
+        "product_id": 16,
+        "products": "Beans",
+        "category": "Beans"
+    },
+    {
+        "product_id": 17,
+        "products": "Beans (K132)",
+        "category": "Beans"
+    },
+    ...
+]
+```
+
+
+# Create New Product
+
+**Endpoint**: `[POST] /api/products`
+
+**Input**: pass in an object containing the following login information.
+
+|    Key      |  Type  | Required | 
+|-------------|--------|----------|
+|  products   | string |   Yes    |
+| description | string |   No     | 
+| price       | integer|   Yes    |                                            
+| category    | string |   Yes    |
+
+**Output**: on success, returns an object in the following format.
+
+```
+{
+    "product_id": 119,
+    "products": "foo",
+    "description": "bar",
+    "price": 5,
+    "category_id": 2
+}
+```
+
+
