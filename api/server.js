@@ -3,7 +3,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 const userRouter = require('./user/user-router')
 const productRouter = require('./Products/product-router')
-const categoryRouter = require('./Category/category-router')
+const categoryRouter = require('./category/category-router')
 const User = require('./user/user-model')
 
 const server = express();
