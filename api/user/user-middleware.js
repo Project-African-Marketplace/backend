@@ -1,39 +1,46 @@
 const User = require('../user/user-model')
 
-const checkUsernameExists = async (req,res,next) => {
-    try{
-        let {username} = req.body
-        const user = await User.getUserBy({username:username})
-        if(!user){
-            next({status:401, message: "Invalid Credentials"})
+const checkUsernameExists = async (req, res, next) => {
+    try {
+        let { username } = req.body
+        const user = await User.getUserBy({ username: username })
+        if (!user) {
+            next({ status: 404, message: "User not found" })
         }
-        else{
+        else {
             req.user = user
             next()
         }
     }
-    catch(err){
+    catch (err) {
         next(err)
     }
 }
-const validateUser = async (req,res,next) => {
-    try{
-        const user = await User.getUserBy({username:req.body.username})
-        if(user){
-            next({status:400, message:'User already exists'})
+const validateUser = async (req, res, next) => {
+    try {
+        const user = await User.getUserBy({ username: req.body.username })
+        if (user) {
+            next({ status: 400, message: 'User already exists' })
         }
-        else{
+        else {
             next()
         }
     }
-    catch(err){
+    catch (err) {
         next(err)
     }
 }
-const checkCredentials = async (req,res,next) => {
-    const {username,password} = req.body
-    if(!username || !password){
-        next({status: 400,message: "Username and password required"})
+const checkCredentials = async (req, res, next) => {
+    const { username, password, role_name } = req.body
+    if (!username || !password || !role_name) {
+        next({ status: 400, message: "Invalid credentials" })
+    }
+    next()
+}
+const checkLoginCredentials = async (req, res, next) => {
+    const { username, password } = req.body
+    if (!username || !password) {
+        next({ status: 400, message: "Username and password are required" })
     }
     next()
 }
@@ -41,5 +48,6 @@ const checkCredentials = async (req,res,next) => {
 module.exports = {
     checkUsernameExists,
     validateUser,
-    checkCredentials
+    checkCredentials,
+    checkLoginCredentials
 }

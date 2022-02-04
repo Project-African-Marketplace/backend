@@ -17,20 +17,20 @@ exports.up = async (knex) => {
       products.string('description', 255);
       products.integer('price', 255).notNullable();
       products.integer('category_id')
-              .unsigned()
-              .notNullable()
-              .references('category_id')
-              .inTable('category')
-              .onUpdate('CASCADE')
-              .onDelete('CASCADE');
+        .unsigned()
+        .notNullable()
+        .references('category_id')
+        .inTable('category')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
     })
 };
 
 
 exports.down = async (knex) => {
   await knex.schema
-  .dropTableIfExists('products')
-  .dropTableIfExists('category')
-  .dropTableIfExists('users')
+    .dropTableIfExists('products')
+    .dropTableIfExists('category')
+    .dropTableIfExists('users')
 
 }

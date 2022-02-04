@@ -2,6 +2,7 @@
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../secrets');
 const db = require('../data/db-config');
+const Items = require('./product-model');
 
 const restricted = (req, res, next) => {
   const token = req.headers.authorization;
@@ -40,8 +41,36 @@ const invalidCategory = async (req, res, next) => {
   }
 };
 
+const checkProductBody = (req,res,next) => {
+  const {product,price,category} = req.body
+  if(!product || !price || !category){
+    next({
+      status:400,
+      message:"Product name, price and category are required"
+    })
+  } 
+  next()
+}
+
+const checkProductExists = async (req,res,next) => {
+  const { id } = req.params;
+  const product = await Items.getProductById(id);
+    if (!product) {
+      res.status(404).json({
+        message: 'the product does not exist'
+      });
+    } 
+    else{
+      req.product = product
+      next()
+    }
+}
+
+
 module.exports = {
   restricted,
-  invalidCategory
+  invalidCategory,
+  checkProductBody,
+  checkProductExists
 };
 

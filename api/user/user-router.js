@@ -1,9 +1,14 @@
 const express = require("express")
 const User = require('./user-model')
-const {checkUsernameExists,validateUser,checkCredentials} = require('../user/user-middleware')
 const {tokenMaker } = require('../secrets')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
+const {
+    checkUsernameExists,
+    validateUser,
+    checkCredentials,
+    checkLoginCredentials
+} = require('../user/user-middleware')
 
 router.post('/register',checkCredentials,validateUser,async (req,res,next) => {
     try{
@@ -17,7 +22,7 @@ router.post('/register',checkCredentials,validateUser,async (req,res,next) => {
     }
 })
 
-router.post('/login',checkCredentials,checkUsernameExists,async (req,res,next)=> {
+router.post('/login',checkLoginCredentials,checkUsernameExists,async (req,res,next)=> {
     try{
         const {password} = req.body
         if(bcrypt.compareSync(password,req.user.password)){

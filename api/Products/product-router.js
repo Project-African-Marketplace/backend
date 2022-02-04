@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Items = require('./product-model');
-const { restricted, invalidCategory } = require('./product-middleware');
+const { 
+  restricted,
+  invalidCategory,
+  checkProductBody
+} = require('./product-middleware');
 
 router.get('/:id', restricted, invalidCategory, (req, res, next) => {
   const { id } = req.params;
@@ -12,9 +16,8 @@ router.get('/:id', restricted, invalidCategory, (req, res, next) => {
     .catch(next);
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/',restricted,checkProductBody, async (req, res, next) => {
   try {
-
     const resp = await Items.addProduct(req.body);
     res.status(201).json(resp);
   }
@@ -23,7 +26,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',restricted, async (req, res) => {
   try {
     const { id } = req.params;
     const deletedProduct = await Items.getProductById(id);
@@ -43,7 +46,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-router.put('/:product_id', async (req, res, next) => {
+router.put('/:product_id',restricted, async (req, res, next) => {
   try {
     const { product_id } = req.params;
     const newProduct = await Items.insertProduct(product_id, req.body);
