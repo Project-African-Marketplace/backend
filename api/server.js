@@ -17,7 +17,7 @@ server.use('/api/category', categoryRouter);
 
 server.get('/', async (req, res) => {
   const response = await User.getAllUsers();
-  res.status(200).json('Welcome Users: ',response);
+  res.status(200).json(response);
 });
 
 server.use((err, req, res, next) => {

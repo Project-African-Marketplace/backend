@@ -4,8 +4,14 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
+  knex('users').truncate();
   knex('products').truncate();
   knex('category').truncate();
+
+  await knex('users')
+    .insert([
+      { username: "winnie", password: "1234", role_name: 'owner' }
+    ])
 
   await knex('category')
     .insert([
