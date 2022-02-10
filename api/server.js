@@ -15,9 +15,8 @@ server.use('/api/products', productRouter);
 server.use('/api/category', categoryRouter);
 
 
-server.get('/', async (req, res) => {
-  const response = await User.getAllUsers();
-  res.status(200).json(response);
+server.get('/',(req, res) => {
+  res.status(200).json("Welcome to African marketplace API");
 });
 
 server.use((err, req, res, next) => {
