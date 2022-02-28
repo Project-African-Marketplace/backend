@@ -47,7 +47,7 @@ Endpoint starting with /api/auth are related to login/signup process.
 ```
 {
     "message": "Welcome Mike!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6Ik1pa2UiLCJpYXQiOjE2NDM4MjE4MDksImV4cCI6MTY0Mzg1MDYwOX0.IS_TvQOS5JAlI8lM0Cmq23PYfmtfAIgPr6PiAWsfDRg"
+    "token": #encrypted token
 }
 ```
 ### Get All Categories
